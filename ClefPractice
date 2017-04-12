@@ -1,0 +1,63 @@
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
+
+import java.io.*;
+
+public class ClefPractice extends JFrame {
+	public ClefPractice() throws IOException {
+		// size: 460 x 365 pixels
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Clef Practice");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 11, 424, 24);
+		getContentPane().add(lblNewLabel);
+
+		JCheckBox chckbxBass = new JCheckBox("Bass");
+		chckbxBass.setBounds(22, 95, 97, 23);
+		getContentPane().add(chckbxBass);
+
+		JCheckBox chckbxTenor = new JCheckBox("Tenor");
+		chckbxTenor.setBounds(121, 95, 97, 23);
+		getContentPane().add(chckbxTenor);
+
+		JCheckBox chckbxAlto = new JCheckBox("Alto");
+		chckbxAlto.setBounds(220, 95, 85, 23);
+		getContentPane().add(chckbxAlto);
+
+		JCheckBox chckbxTreble = new JCheckBox("Treble");
+		chckbxTreble.setBounds(319, 95, 97, 23);
+		getContentPane().add(chckbxTreble);
+
+		JButton btnEnter = new JButton("Enter");
+		btnEnter.setBounds(178, 293, 89, 23);
+		getContentPane().add(btnEnter);
+
+		JLabel lblFlashCard = new JLabel("");
+		lblFlashCard.setBounds(92, 125, 261, 106);
+		getContentPane().add(lblFlashCard);
+		ImageIcon icon = new ImageIcon("Flashcards/treble-g.jpg");
+		lblFlashCard.setIcon(icon);
+
+	}
+
+	public static void main(String str[]) throws IOException {
+		ClefPractice practice = new ClefPractice();
+		practice.setSize(460, 365);
+		practice.setVisible(true);
+
+	}
+}
