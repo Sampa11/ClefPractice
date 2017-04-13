@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,49 +15,99 @@ import javax.swing.JButton;
 
 import java.io.*;
 
+import javax.swing.JRadioButton;
+import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class ClefPractice extends JFrame {
+
+	private JLabel lblFlashcard;
+
+	private JRadioButton rdbtnTreble;
+	private JRadioButton rdbtnAlto;
+	private JRadioButton rdbtnTenor;
+	private JRadioButton rdbtnBass;
+
+	private boolean getTreble = false;
+	private boolean getAlto = false;
+	private boolean getTenor = false;
+	private boolean getBass = false;
+
 	public ClefPractice() throws IOException {
-		// size: 460 x 365 pixels
+		// size: 500 x 410 pixels
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Clef Practice");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 11, 424, 24);
+		lblNewLabel.setBounds(10, 11, 464, 24);
 		getContentPane().add(lblNewLabel);
 
-		JCheckBox chckbxBass = new JCheckBox("Bass");
-		chckbxBass.setBounds(22, 95, 97, 23);
-		getContentPane().add(chckbxBass);
+		lblFlashcard = new JLabel("");
+		lblFlashcard.setBounds(122, 109, 240, 166);
+		getContentPane().add(lblFlashcard);
 
-		JCheckBox chckbxTenor = new JCheckBox("Tenor");
-		chckbxTenor.setBounds(121, 95, 97, 23);
-		getContentPane().add(chckbxTenor);
+		JPanel panel = new JPanel();
+		panel.setBounds(84, 46, 317, 46);
+		getContentPane().add(panel);
 
-		JCheckBox chckbxAlto = new JCheckBox("Alto");
-		chckbxAlto.setBounds(220, 95, 85, 23);
-		getContentPane().add(chckbxAlto);
+		rdbtnTreble = new JRadioButton("Treble");
+		rdbtnTreble.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getTreble = true;
+			}
+		});
+		panel.add(rdbtnTreble);
 
-		JCheckBox chckbxTreble = new JCheckBox("Treble");
-		chckbxTreble.setBounds(319, 95, 97, 23);
-		getContentPane().add(chckbxTreble);
+		rdbtnAlto = new JRadioButton("Alto");
+		panel.add(rdbtnAlto);
+
+		rdbtnTenor = new JRadioButton("Tenor");
+		panel.add(rdbtnTenor);
+
+		rdbtnBass = new JRadioButton("Bass");
+		panel.add(rdbtnBass);
+
+		ButtonGroup options = new ButtonGroup();
+		options.add(rdbtnTreble);
+		options.add(rdbtnAlto);
+		options.add(rdbtnTenor);
+		options.add(rdbtnBass);
 
 		JButton btnEnter = new JButton("Enter");
-		btnEnter.setBounds(178, 293, 89, 23);
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				getFlashcard();
+			}
+		});
+		btnEnter.setBounds(198, 338, 89, 23);
 		getContentPane().add(btnEnter);
 
-		JLabel lblFlashCard = new JLabel("");
-		lblFlashCard.setBounds(92, 125, 261, 106);
-		getContentPane().add(lblFlashCard);
-		ImageIcon icon = new ImageIcon("Flashcards/treble-g.jpg");
-		lblFlashCard.setIcon(icon);
+		// ImageIcon icon = new ImageIcon("Flashcards/treble-g.jpg");
+		// lblFlashCard.setIcon(icon);
 
+	}
+
+	protected void getFlashcard() {
+		String entry = "";
+		if (getTreble) {
+			// code for treble deck
+			ImageIcon icon = new ImageIcon("Flashcards/treble-g.jpg");
+			lblFlashcard.setIcon(icon);
+		} else if (getAlto) {
+			// code for alto deck
+		} else if (getTenor) {
+			// code for tenor deck
+		} else if (getBass) {
+			// code for bass deck
+		}
 	}
 
 	public static void main(String str[]) throws IOException {
 		ClefPractice practice = new ClefPractice();
-		practice.setSize(460, 365);
+		practice.setSize(500, 410);
 		practice.setVisible(true);
 
 	}
